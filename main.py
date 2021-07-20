@@ -37,8 +37,14 @@ def mkb():
     mkb = requests.post('https://my.mkb-am.ru/api/auth/password/reset', headers=mkbHeaders, json={"login": mkbPhone})
     print(mkb.status_code)
     print(mkb.json())
-
-
+def mcdonalds():
+    mcdHeaders=headers
+    mcdHeaders.update({"Host":"site-api.mcdonalds.ru","Origin":"https://mcdonalds.ru"})
+    mcdPhone=phone
+    mcd=requests.post("https://site-api.mcdonalds.ru/api/v1/user/login/phone",headers=mcdHeaders,json={"number":"+79997854589","g-recaptcha-response":"03AGdBq27OPyEZwZGTLGh5AuLL4CwyfkdN9LiB6BwiHhVhI_G9gqw_A_Ff1O9wxUKYphC75FWI-mIfkvdGLdsoV42PY-qgGqH-PafQmDGLcWJ45Pm9meCKLtGHjirnax5Fd5CG7hLEsvjl3I9JGnZXovs60eXg1JydnvVES4CrJ4EsjdmRnTdPUEXAswNdNs4Z78IqvzU2lxCBl2EW8LTQBZC071sMgztgJ75ZHzaIOZEA7qHEb4Up6uJ8NaojfnnuVQckpLSbMPPEl-P0_jfv94juJm-D8sLr6XQHzlKxNcHJZlWy5aYmTvethgmCDH3mCUlWF2mg60Qdd7dnz1T60lz354ySwXVXpQnCSTbIK2h5zbTxjR6W-MCgfh6x0DEyIPX_xVou1UmILy8As3aRQFmaPz-jR7klxnnsjsHyPeChWU3AXGX14GkU6eC2lL3rZnYknzXf0mal"})
+    print(mcd.status_code)
+    print(mcd.json())
+mcdonalds()
 mkb()
 sunlight()
 pyaterka()
