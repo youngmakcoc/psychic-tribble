@@ -1,6 +1,8 @@
-import  requests
+import requests
 
-phone = "9223702227"
+print("Введите номер телефона без кода страны")
+phone=input()
+print("Номер телефона " + phone)
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
     "host": "api.sunlight.net", "Content-Type": "application/json", }
