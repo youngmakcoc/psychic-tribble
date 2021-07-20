@@ -7,7 +7,7 @@ phone = '9991253348'
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124", "Content-Type": "application/json", }
 
-def sunlihgt():
+def sunlight():
     sunlightHeaders = headers
     sunlightHeaders.update({"Host": "api.sunlight.net", "Origin": "https://api.sunlight.net"})
     phoneSunlight = "7" + phone
@@ -32,5 +32,5 @@ def mkb():
     print(mkb.status_code)
     print(mkb.json())
 mkb()
-sunlihgt()
+sunlight()
 pyaterka()
