@@ -5,9 +5,9 @@ import time
 # print("Введи номер телефона без кода страны")
 # phone=input()
 # print("Номер телефона " + phone)
-phone = '9519322412'
+phone = '9998756530'
 ts = 1
-ipPort = "212.33.246.122:8080"
+ipPort = "51.222.21.93:32768"
 proxy = {"https": "https://" + ipPort}
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
@@ -49,6 +49,7 @@ def aptekaru():
     #bisHeaders.update({"Host":"bistrodengi.ru","Origin":"https://bistrodengi.ru","X-Requested-With":"XMLHttpRequest"})
     #bisPhone="+7"+phone
     #bis=requests.post("https://bistrodengi.ru/ajax/lead.php",headers=bisHeaders,json={"fio":none,"phone":bisPhone})
+
 def mcdonalds():
     mcHeaders=headers
     mcHeaders.update({"host":"site-api.mcdonalds.ru", "Origin":"https://mcdonalds.ru"})
@@ -57,7 +58,16 @@ def mcdonalds():
     print(mc.status_code,"McDonalds")
     print(mc.json())
 
-mcdonalds()
+def ikea():
+    ikHeaders=headers
+    ikHeaders.update({"origin":"https://ru.accounts.ikea.com"})
+    ikPhone="+7" + phone
+    ik=requests.post("https://ru.accounts.ikea.com/cim/ru/ru/v1/passwordless/start",headers=ikHeaders,proxies=proxy,json={"phoneNumber":ikPhone,"flow":"SIGNUP_PHONE_VERIFY"})
+    print(ik.status_code,"Ikea")
+    print(ik.json())
+
+
+ikea()
 time.sleep(ts)
 pyaterka()
 time.sleep(ts)
