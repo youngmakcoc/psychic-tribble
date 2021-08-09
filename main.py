@@ -10,9 +10,6 @@ ip=getProxy.json()[0]["Ip"]
 port=getProxy.json()[0]["Port"]
 
 
-
-
-
 #print("Введи номер телефона без кода страны")
 #phone=input()
 
